@@ -28,9 +28,19 @@ function displayPhotos() {
     img.setAttribute('src', image.urls.small_s3);
     img.setAttribute('alt', image.alt_description);
     img.setAttribute('title', image.alt_description);
-    img.addEventListener('load', checkPhotos);
     imageContainer.appendChild(img);
+
+    img.addEventListener('load', checkPhotos);
   });
+}
+
+function checkPhotos() {
+  photosLoaded++;
+  if (photosLoaded === photosArray.length) {
+  }
+  photosLoaded = 0;
+  console.log(photosLoaded);
+  getPhotos();
 }
 
 function loadMorePhotos() {
@@ -38,12 +48,6 @@ function loadMorePhotos() {
     window.innerHeight + window.scrollY >=
     document.body.offsetHeight - 1000
   ) {
-    getPhotos();
     checkPhotos();
   }
-}
-
-function checkPhotos() {
-  photosLoaded++;
-  console.log(photosLoaded);
 }
